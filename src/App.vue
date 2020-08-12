@@ -1,32 +1,85 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
-  </div>
+  <v-app>
+    <Navbar />
+    <v-content>
+      <router-view></router-view>
+
+      <!-- <div class="text-center">
+        <v-menu v-model="menu" :close-on-content-click="false" :nudge-width="200" offset-y>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn bottom color="pink" dark fab fixed right v-bind="attrs" v-on="on">
+              <i class="fas fa-comment-dots"></i>
+            </v-btn>
+          </template>
+
+          <v-card left>
+            <v-list>
+              <v-list-item>
+                <v-list-item-avatar>
+                  <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John" />
+                </v-list-item-avatar>
+
+                <v-list-item-content>
+                  <v-list-item-title>John Leider</v-list-item-title>
+                  <v-list-item-subtitle>Founder of Vuetify.js</v-list-item-subtitle>
+                </v-list-item-content>
+
+                <v-list-item-action>
+                  <v-btn :class="fav ? 'red--text' : ''" icon @click="fav = !fav">
+                    <v-icon>mdi-heart</v-icon>
+                  </v-btn>
+                </v-list-item-action>
+              </v-list-item>
+            </v-list>
+
+            <v-divider></v-divider>
+
+            <v-list>
+              <v-list-item>
+                <v-list-item-action>
+                  <v-switch v-model="message" color="purple"></v-switch>
+                </v-list-item-action>
+                <v-list-item-title>Enable messages</v-list-item-title>
+              </v-list-item>
+
+              <v-list-item>
+                <v-list-item-action>
+                  <v-switch v-model="hints" color="purple"></v-switch>
+                </v-list-item-action>
+                <v-list-item-title>Enable hints</v-list-item-title>
+              </v-list-item>
+            </v-list>
+
+            <v-card-actions>
+              <v-spacer></v-spacer>
+
+              <v-btn text @click="menu = false">Cancel</v-btn>
+              <v-btn color="primary" text @click="menu = false">Save</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-menu>
+      </div> -->
+    </v-content>
+    <!-- <Footer/>  -->
+  </v-app>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import Navbar from "@/components/Navbar";
 
-#nav {
-  padding: 30px;
+export default {
+  name: "App",
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+  components: {
+    Navbar
+  },
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
-</style>
+  data: () => ({
+    dialog: false,
+    fav: true,
+    menu: false,
+    message: false,
+    hints: true
+  })
+};
+</script>
